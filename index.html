@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信念之星</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #1a1a2e;
+            font-family: Arial, sans-serif;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            position: relative;
+        }
+        #toggleButton {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: #00b4d8;
+            cursor: none;
+            z-index: 1000;
+            padding: 5px;
+            transition: transform 0.3s ease;
+        }
+        #toggleButton:hover {
+            transform: scale(1.1);
+        }
+        #statusPanel {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background-color: rgba(26, 26, 46, 0.95);
+            padding: 20px;
+            box-sizing: border-box;
+            transition: transform 0.3s ease;
+            z-index: 999;
+            user-select: none;
+            cursor: none;
+        }
+        #statusPanel.open {
+            transform: translateX(300px);
+        }
+        #gameCanvas {
+            border: 2px solid #4a4e69;
+            background-color: #16213e;
+        }
+        #gameInfo {
+            margin-top: 20px;
+            font-size: 20px;
+            user-select: none;
+            cursor: none;
+            color: #e0e0e0;
+        }
+        #startScreen, #gameOverScreen {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(26, 26, 46, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            color: #e0e0e0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: none;
+            background-color: #00b4d8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #0096c7;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div id="startScreen">
+        <h1>信念之星</h1>
+        <button onclick="startGame()">開始遊戲</button>
+    </div>
+    <canvas id="gameCanvas" width="600" height="600"></canvas>
+    <div id="gameInfo">分數：<span id="score">0</span></div>
+    <button id="toggleButton">⋮</button>
+    <div id="statusPanel">
+        <div id="gamepadStatus" style="margin-top: 100px;">
+            <h3 style="margin: 0 0 10px 0; color: #00b4d8;">手柄狀態</h3>
+            <div>左搖桿：<span id="leftStick">未使用</span></div>
+            <div>方向鍵：<span id="dpad">未使用</span></div>
+            <div>按鈕狀態：<span id="buttons">未使用</span></div>
+            <div>震動狀態：<span id="vibration">未使用</span></div>
+            <div style="margin-top: 20px;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr style="border-bottom: 1px solid #00b4d8;">
+                        <th style="padding: 8px; text-align: center;">顏色</th>
+                        <th style="padding: 8px; text-align: center;">速度</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #00b4d8;">
+                        <td style="padding: 8px; text-align: center;">
+                            <div style="width: 20px; height: 20px; background-color: #ff69b4; margin: 0 auto;"></div>
+                        </td>
+                        <td style="padding: 8px; text-align: center;">減少</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #00b4d8;">
+                        <td style="padding: 8px; text-align: center;">
+                            <div style="width: 20px; height: 20px; background-color: #ffa500; margin: 0 auto;"></div>
+                        </td>
+                        <td style="padding: 8px; text-align: center;">不變</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; text-align: center;">
+                            <div style="width: 20px; height: 20px; background-color: #90ee90; margin: 0 auto;"></div>
+                        </td>
+                        <td style="padding: 8px; text-align: center;">增加</td>
+                    </tr>
+                </table>
+                <div style="margin-top: 20px;">
+                    <div>當前速度：<span id="currentSpeed">1</span></div>
+                </div>
+                <div id="foodHistory" style="margin-top: 20px;">
+                    <h3>食物記錄</h3>
+                    <div id="foodHistoryList" style="max-height: 400px; overflow-y: auto; padding-right: 10px; user-select: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="gameOverScreen" style="display: none;">
+        <h2>遊戲結束</h2>
+        <p>最終分數：<span id="finalScore">0</span></p>
+        <button onclick="restartGame()">重新開始</button>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
