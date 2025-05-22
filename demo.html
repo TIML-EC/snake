@@ -1,0 +1,67 @@
+<html><head><base href="https://vmvgamedemo.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VMV Game Demo Video</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0a0a0a;
+    color: #ffffff;
+  }
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  h1 {
+    text-align: center;
+    color: #4db8ff;
+    font-size: 3em;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(77, 184, 255, 0.5);
+  }
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(77, 184, 255, 0.3);
+    border-radius: 15px;
+  }
+  .video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>VMV Game Demonstration Video</h1>
+    <div class="video-container">
+      <video controls autoplay muted loop>
+        <source src="https://raw.githubusercontent.com/TIML-EC/snake/main/videoDemo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const video = document.querySelector('video');
+      const container = document.querySelector('.video-container');
+      
+      container.addEventListener('mouseenter', function() {
+        video.play();
+      });
+      
+      container.addEventListener('mouseleave', function() {
+        video.pause();
+      });
+    });
+  </script>
+</body></html>
