@@ -1,0 +1,72 @@
+<html><head><base href="https://timl-ec.github.io/snake">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="https://timl-ec.github.io/snake/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href="https://timl-ec.github.io/snake/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://timl-ec.github.io/snake/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://timl-ec.github.io/snake/favicon-16x16.png">
+<link rel="manifest" href="https://timl-ec.github.io/snake/site.webmanifest">
+
+<title>VMV Game Demo Video</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0a0a0a;
+    color: #ffffff;
+  }
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  h1 {
+    text-align: center;
+    color: #4db8ff;
+    font-size: 3em;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(77, 184, 255, 0.5);
+  }
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(77, 184, 255, 0.3);
+    border-radius: 15px;
+  }
+  .video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>VMV Game Demonstration Video</h1>
+    <div class="video-container">
+      <video controls autoplay loop>
+        <source src="https://raw.githubusercontent.com/TIML-EC/snake/main/videoDemo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const video = document.querySelector('video');
+      const container = document.querySelector('.video-container');
+      
+      container.addEventListener('mouseenter', function() {
+        video.play();
+      });
+      
+
+    });
+  </script>
+</body></html>
